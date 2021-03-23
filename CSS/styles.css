@@ -1,0 +1,12 @@
+#ruletaContainer{
+    background-position: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#canvas{
+    padding: 30px;
+    padding-top: 50px;
+    margin: auto;
+    display: flex;
+}
