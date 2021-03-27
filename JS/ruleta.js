@@ -59,8 +59,8 @@ function DibujarRuleta(ArregloElementos) {
             'duration':4,
             'spins': 15,
             'callbackFinished': 'Mensaje()',
-            'callbackAfter': 'DibujarTriangulo()' 
-        }, 
+            'callbackAfter': 'DibujarTriangulo()'
+        },
     });
     DibujarTriangulo();
 }
@@ -76,6 +76,12 @@ function leerElementos() {
         }
     });
     DibujarRuleta(ElementosRuleta);
-} 
+}
 
-
+function generarProbabilidad() {
+  var elementos = document.getElementById("ListaPremios").value.split("\n");
+  var tirosTotales = parseInt(document.getElementById("tirosTotales").value);
+  var probabilidadTotal = 1 - Math.pow((elementos.length-1)/elementos.length,tirosTotales);
+  document.getElementById("texto").innerHTML = "La probabilidad de obtener un premio en particular es de " + (1/elementos.length) +
+  ".\n La probabilidad de obtener un premio en particar en " + tirosTotales +" tiros es de "+ probabilidadTotal;
+}

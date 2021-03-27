@@ -21,16 +21,16 @@
     <link rel="stylesheet" href="./CSS/styles.css">
     <!--Funciones Propias-->
     <script src="./JS/ruleta.js"></script>
-    
+
     <title>Ruleta de Probabilidad</title>
-    
+
 </head>
 
 <body>
     <div class="container">
 
         <div class="row align-items-center">
-            
+
             <!--Lista de premios-->
             <div class="col-2 text-justify">
                 <div class="card">
@@ -48,13 +48,18 @@ Premio 5
                     <input type="button" class="btn btn-success" onclick="leerElementos()" value="Generar Ruleta"/>
 
                 </div>
-                
+
             </div>
+
+            <!--Probabilidad total -->
+              Ingresa la cantidad de tiros máxima para obtener un premio en particular
+              <input type="text" id="tirosTotales">
+              <input type="button" onclick="generarProbabilidad()" value="Obtener Probabilidad">
 
             <!--Ruleta-->
             <div class="col-8">
                 <h1 style="text-align: center;">RULETA</h1>
-      
+
                 <div id="ruletaContainter" onclick="objRuleta.startAnimation();">
                     <canvas id="canvas" width="500" height="490">
                         Canvas not supported, use another browser.
@@ -65,7 +70,7 @@ Premio 5
                     let theWheel = new Winwheel();
                 </script>
             </div>
-            
+
             <!--Probabilidades-->
             <div class="col-2 text-justify">
                 <div class="card">
@@ -73,7 +78,7 @@ Premio 5
                         Probabilidades:
                     </h5>
                     <div class="card-body">
-                        <div class="card-text">
+                        <div class="card-text" id="texto">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora laborum velit odio non fuga sed eligendi consequatur quam! Repellat dolorem earum similique deleniti provident quis officia vero, soluta dolor laudantium.
                         </div>
                     </div>
