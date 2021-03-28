@@ -42,26 +42,20 @@
 Premio 2
 Premio 3
 Premio 4
-Premio 5
-                    </textarea>
+Premio 5</textarea>
                     <br>
-                    <input type="button" class="btn btn-success" onclick="leerElementos()" value="Generar Ruleta"/>
+                    <input type="button" class="btn btn-outline-success" onclick="leerElementos()" value="Generar Ruleta"/>
 
                 </div>
 
             </div>
-
-            <!--Probabilidad total -->
-              Ingresa la cantidad de tiros máxima para obtener un premio en particular
-              <input type="text" id="tirosTotales">
-              <input type="button" onclick="generarProbabilidad()" value="Obtener Probabilidad">
 
             <!--Ruleta-->
             <div class="col-8">
                 <h1 style="text-align: center;">RULETA</h1>
 
                 <div id="ruletaContainter" onclick="objRuleta.startAnimation();">
-                    <canvas id="canvas" width="500" height="490">
+                    <canvas id="canvas" width="500" height="510">
                         Canvas not supported, use another browser.
                     </canvas>
                 </div>
@@ -72,24 +66,31 @@ Premio 5
             </div>
 
             <!--Probabilidades-->
-            <div class="col-2 text-justify">
-                <div class="card">
-                    <h5 class="card-header">
-                        Probabilidades:
-                    </h5>
-                    <div class="card-body">
-                        <div class="card-text" id="texto">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora laborum velit odio non fuga sed eligendi consequatur quam! Repellat dolorem earum similique deleniti provident quis officia vero, soluta dolor laudantium.
+            <div class="col-2">
+                <div class="card" style="width: 15rem;">
+                    
+                    <!--Probabilidad total -->
+                    <div class="card">
+                        <h6 class="card-header">Tiros m&aacute;ximos</h6>
+                        <div class="card-body text-center">
+                            <p class="card-text">Ingresa la cantidad de tiros máximos para obtener un premio en particular: </p>
+                            <input type="text" id="tirosTotales" class="form-control">
+                            <br>
+                            <input type="button" onclick="generarProbabilidad()" class="btn btn-outline-primary btn-sm" value="Obtener Probabilidad">
                         </div>
+                    </div>           
+              
+                <br>
+            
+                <h6 class="card-header">Probabilidades:</h6>
+                    <div class="card-body">
+                        <div class="card-text" id="texto"></div>
                     </div>
                 </div>
             </div>
+
         </div>
-
-
     </div>
-
-
 
 </body>
 

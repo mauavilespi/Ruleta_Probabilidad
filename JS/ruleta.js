@@ -9,11 +9,11 @@ var ctx;
 function Mensaje() {
     winningSegment = objRuleta.getIndicatedSegment();
     swal({
-        title: " ¡ "+winningSegment.text+" !",
-        showCancelButton: true,
+        title: " ¡Usted ha ganado el "+winningSegment.text+"!",
+        //showCancelButton: true,
         confirmButtonColor: "#e74c3c",
         confirmButtonText: "Reiniciar",
-        cancelButtonText: "Quitar elemento",
+        //cancelButtonText: "Quitar elemento",
         closeOnConfirm: true,
         closeOnCancel: true
     },
@@ -50,14 +50,17 @@ function DibujarTriangulo() {
 function DibujarRuleta(ArregloElementos) {
     objRuleta = new Winwheel({
         'canvasId': 'canvas',
-        'numSegments': ArregloElementos.length,
+        'textAlignment': 'center',
+        'numSegments': ArregloElementos.length, //Cantidad de divisiones
+        'lineWidth':3,
         'outerRadius': 245,
         'innerRadius': 5,
         'segments':ArregloElementos,
+        'pins':true,
         'animation':{
             'type': 'spinToStop',
-            'duration':4,
-            'spins': 15,
+            'duration':8, //Segundos girando
+            'spins': 15, //Cantidad de vueltas
             'callbackFinished': 'Mensaje()',
             'callbackAfter': 'DibujarTriangulo()'
         },
@@ -72,16 +75,24 @@ function leerElementos() {
     var ElementosRuleta= [];
     Elementos.forEach(function (Elemento) {
         if(Elemento){
-        ElementosRuleta.push({ 'fillStyle': "#" + ((1 << 24) * Math.random() | 0).toString(16), 'text': Elemento });
+        ElementosRuleta.push({ 'fillStyle': "#" + (Math.floor(Math.random()*16777215).toString(16)), 'text': Elemento }); //Size para modificar el tamaño
         }
     });
     DibujarRuleta(ElementosRuleta);
 }
 
 function generarProbabilidad() {
-  var elementos = document.getElementById("ListaPremios").value.split("\n");
-  var tirosTotales = parseInt(document.getElementById("tirosTotales").value);
-  var probabilidadTotal = 1 - Math.pow((elementos.length-1)/elementos.length,tirosTotales);
-  document.getElementById("texto").innerHTML = "La probabilidad de obtener un premio en particular es de " + (1/elementos.length) +
-  ".\n La probabilidad de obtener un premio en particar en " + tirosTotales +" tiros es de "+ probabilidadTotal;
+  let elementos = document.getElementById("ListaPremios").value.split("\n");
+  let tirosTotales = parseInt(document.getElementById("tirosTotales").value);
+  let probabilidadTotal = 1 - Math.pow((elementos.length-1)/elementos.length,tirosTotales);
+  let probabilidadParticular = (1/(elementos.length));
+
+  //Redondear a tres dígitos
+  let probabilidadTotalround = probabilidadTotal.toFixed(3);
+  let probabilidadParticularround = probabilidadParticular.toFixed(3);
+
+  //Texto de probabilidad 
+  let probabilidadTxt = "La probabilidad de obtener un premio en particular es de " + "<b>"+ probabilidadParticularround +"</b>.<br>"+ "La probabilidad de obtener un premio en particular en " + tirosTotales +" tiros es de <b>"+ probabilidadTotalround + "</b>.<br>";
+
+  document.getElementById("texto").innerHTML = probabilidadTxt;
 }
